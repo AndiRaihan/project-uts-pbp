@@ -7,7 +7,7 @@ Pemrograman Berbasis Platform (CSGE602022) - diselenggarakan oleh Fakultas Ilmu 
 ## Anggota Kelompok
 1. Dafi Nafidz Radhiyya - 
 2. Andi Muhamad Dzaky Raihan - 
-3. Andi Ayuna Rymang - 
+3. Andi Ayuna Rymang - 2106637265
 4. Tm Revanza Narendra Pradipta - 
 5. Munifah Nurfadhilah - 
 
