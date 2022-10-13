@@ -5,19 +5,23 @@ Pemrograman Berbasis Platform (CSGE602022) - diselenggarakan oleh Fakultas Ilmu 
 *Read this in other languages: [Indonesian](README.md), [English](README.en.md)*
 
 ## Anggota Kelompok
-1. Dafi Nafidz Radhiyya - 
-2. Andi Muhamad Dzaky Raihan - 
+1. Dafi Nafidz Radhiyya - 2106701564
+2. Andi Muhamad Dzaky Raihan - 2106631412
 3. Andi Ayuna Rymang - 2106637265
-4. Tm Revanza Narendra Pradipta - 
-5. Munifah Nurfadhilah - 
+4. Tm Revanza Narendra Pradipta - 2206025003
+5. Munifah Nurfadhilah - 2106654851
 
-## (Link Heroku)[#]
-## List Modul
-1. modui 1
-2. modul 2
-3. modul 3
-4. modul 4
-5. modul 5
+## [Link Heroku](https://project-uts-pbp-a05.herokuapp.com/)
+
+## Cerita Aplikasi 
+Sampai saat ini di Indonesia korupsi masih marak dilakukan oleh masyarakat Indonesia. Mulai dari skala kecil sampai skala besar, seperti pemerintahan. Terdapat banyak saksi yang melihat aksi para pelaku korupsi tersebut. Namun, mereka belum mempunyai wadah untuk melaporkan aksi tersebut secara anonim. Kami membuat aplikasi ini dengan tujuan memberikan wadah kepada para saksi yang berani mengungkapkan kejahatan pelaku korupsi. Kami mendapatkan inspirasi aplikasi ini berdasarkan tautan [berikut](https://www.oecd.org/g20/topics/anti-corruption/).
+
+## List Modul beserta Pembagian Pengerjaan
+1. Login, Regist, Logout (Munifah Nurfadhilah)
+2. Timeline Post-an Forum (Andi Ayuna Rymang)
+3. Top 3 Koruptor (Dafi Nafidz Radhiyya)
+4. Create Forum untuk Author (Andi Muhamad Dzaky Raihan)
+5. Profile Author (Tm Revanza Narendra Pradipta)
 
 ## User Persona
 * Reader tanpa log in
@@ -26,14 +30,16 @@ Pemrograman Berbasis Platform (CSGE602022) - diselenggarakan oleh Fakultas Ilmu 
 
 ## User Access
 * Reader Tanpa Log in
-   * ngapain
-   * ngapain
+   * Dapat membaca timeline post-an author
 * Author
-   * Ngapain
-   * Ngapain
+   * Dapat menulis forum yang bersifat anonim
+   * Dapat menghapus forum yang sudah ditulis sebelumnya
+   * Dapat mengedit forum setelah di post
+   * Dapat melihat profile yang berisi post-an author itu sendiri
 * Reader Logged In
-   * Ngapain
-   * Ngapain
+   * Dapat membaca timeline post-an author
+   * Dapat vote setuju atau tidak setuju terhadap post-an
+   * Dapat melihat fitur Top 3 Koruptor 
 
 ## Credits
 
