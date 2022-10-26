@@ -3,7 +3,7 @@ from auth.models import UserProfile
 
 # Create your models here.
 
-class forum(models.Model):
+class Forum(models.Model):
     creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     title = models.CharField(max_length = 255)
     description = models.TextField()
