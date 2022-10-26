@@ -1,7 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+from auth.models import UserProfile
+from forum.models import Forum
 
 # Create your models here.
-class Timeline:
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    
+class Comment(models.Model):
+    user = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
+    reply = models.OneToOneField(Forum)
+    date = models.DateField(auto_now_add=True)
