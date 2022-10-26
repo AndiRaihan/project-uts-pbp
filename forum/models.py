@@ -9,4 +9,7 @@ class Forum(models.Model):
     description = models.TextField()
     contents = models.ManyToManyField(Content)
     date_created = models.DateTimeField(auto_now_add=True)
+    
+class Members(models.Model):
+    forum = models.OneToOneField(Forum, on_delete=models.CASCADE)
     subscriptor = models.ManyToManyField(UserProfile) # Mau make ginian?
