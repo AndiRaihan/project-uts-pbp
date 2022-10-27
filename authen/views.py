@@ -5,20 +5,19 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
-from django.contrib.auth.models import UserProfile
+from authen.models import UserProfile
 
 
 # Create your views here.
 def register(request):
     form = UserCreationForm()
-
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-
+            user_profile = UserProfile.objects.create(user=user)
             messages.success(request, 'Akun telah berhasil dibuat!')
-            return redirect('auth:login')
+            return redirect('authen:login')
     
     context = {'form':form}
     return render(request, 'register.html', context)
@@ -30,7 +29,7 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('auth:show_timeline')
+            return redirect('authen:show_timeline')
         else:
             messages.info(request, 'Username atau Password salah!')
     context = {}
@@ -38,4 +37,4 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('auth:login')
+    return redirect('authen:login')
