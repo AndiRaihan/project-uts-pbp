@@ -29,7 +29,10 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('authen:show_timeline')
+            request.session['user_profile_pk'] = UserProfile.objects.get(user=user).pk
+            request.session.set_expiry(1800)
+            return redirect('forum:create-post')
+            return redirect('authen:show_timeline') # Nanti redirect ke timeline
         else:
             messages.info(request, 'Username atau Password salah!')
     context = {}
