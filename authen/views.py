@@ -31,6 +31,7 @@ def login_user(request):
             login(request, user)
             request.session['user_profile_pk'] = UserProfile.objects.get(user=user).pk
             request.session.set_expiry(1800)
+            return redirect('forum:create-post')
             return redirect('authen:show_timeline') # Nanti redirect ke timeline
         else:
             messages.info(request, 'Username atau Password salah!')

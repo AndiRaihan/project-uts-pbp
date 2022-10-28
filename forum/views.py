@@ -30,6 +30,7 @@ def create_post(request):
             forum = Forum.objects.get(id=forum_id)
             seller = request.user.userprofile
             content_baru = Content.objects.create(creator=seller, title=title, description=description)
+            ContentUpvote.objects.create(content=content_baru)
             forum.contents.add(content_baru)
             return redirect('forum:json') # --> Nanti redirect ke page sebelumnya
             return HttpResponse(serializers.serialize("json", content_baru), content_type="application/json")
@@ -39,6 +40,9 @@ def create_post(request):
     response_data['forums'] = Forum.objects.all()
     return render(request, "create_post.html", response_data)
 
+def create_group(request):
+    return
+
 @login_required(login_url='/login/')
 def show_json(request):
     response_data = {}
@@ -47,6 +51,7 @@ def show_json(request):
     response_data['data'] = json.loads(serializers.serialize("json", content))
     return JsonResponse((response_data))
 
+@login_required(login_url='/login/')
 def show_json_group(request, group_name):
     response_data = {}
     forum = Forum.objects.get(title=group_name)
