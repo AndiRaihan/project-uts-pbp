@@ -1,0 +1,20 @@
+[
+{
+    "model": "authen.userprofile",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "image": "",
+        "alias": "Anonymous"
+    }
+},
+{
+    "model": "authen.userprofile",
+    "pk": 2,
+    "fields": {
+        "user": 2,
+        "image": "Cover_TOR_fix_1.png",
+        "alias": "ini superuser"
+    }
+}
+]
