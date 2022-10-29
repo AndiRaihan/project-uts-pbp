@@ -20,14 +20,8 @@ function validate_input(id) {
 }
 
 $(document).ready(function() {
-    $.ajax({
-        url: './name',
-        dataType: 'json',
-        success: function(data){
-            nameList = data.name_list;
-        },
-    });
-    
+    $(".multiple-select").chosen({width: "100%"});
+
     (() => {
         'use strict'
       

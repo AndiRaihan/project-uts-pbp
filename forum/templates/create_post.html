@@ -42,7 +42,7 @@
                 <label class="form-lable" for="id_group">Group Forum</label>
             </div>
             <div class="col align-self-center">
-                <select name="group" id="id_group" class="form-select" required>
+                <select name="group" id="id_group" class="form-select multiple-select" data-placeholder="Masukkan forum tempat post" required multiple>
                     {% for forum in forums %}
                     <option value="{{forum.id}}">{{forum.title}}</option>
                     {% endfor %}

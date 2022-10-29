@@ -26,12 +26,13 @@ def create_post(request):
         if form.is_valid():
             title = form.cleaned_data['title']
             description = form.cleaned_data['description']
-            forum_id = request.POST.get('group')
-            forum = Forum.objects.get(id=forum_id)
+            forum_id = form.cleaned_data['group']
             seller = request.user.userprofile
             content_baru = Content.objects.create(creator=seller, title=title, description=description)
             ContentUpvote.objects.create(content=content_baru)
-            forum.contents.add(content_baru)
+            for pk in forum_id:
+                forum = Forum.objects.get(id=pk)
+                forum.contents.add(content_baru)
             return redirect('forum:json') # --> Nanti redirect ke page sebelumnya
             return HttpResponse(serializers.serialize("json", content_baru), content_type="application/json")
         else:
