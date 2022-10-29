@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Timeline</title>
+</head>
+
+<body>
+    <h1>Timeline</h1>
+    <h3>Halo {{user_name}}</h3>
+
+    <div class="row">
+        {% for post in list_forum %}
+        <div class="card col-lg-4 col-md-6 col-sm-12" style="width: 18rem;">
+            <div class="card-body">
+                <h2 class="card-title">{{post.title}}</h2>
+                <p class="card-text">Anonymous #{{post.creator}}</p>
+                <p class="card-text">{{post.description}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <button class=btn upvote>Upvote</button>
+    <button class=btn reply>Reply</button>
+</body>
+{% endblock content %}
