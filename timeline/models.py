@@ -1,5 +1,5 @@
 from django.db import models
-from auth.models import UserProfile
+from authen.models import UserProfile
 from forum.models import Forum
 
 # Create your models here.
