@@ -2,7 +2,7 @@ from urllib import response
 from django.shortcuts import render
 from authen.models import UserProfile, Content, ContentUpvote
 from forum.models import Forum, Members
-from forum.forms import TaskForms
+from forum.forms import TaskForms, ForumForm
 from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
@@ -40,8 +40,22 @@ def create_post(request):
     response_data['forums'] = Forum.objects.all()
     return render(request, "create_post.html", response_data)
 
+@login_required(login_url='/login/')
 def create_group(request):
-    return
+    form = ForumForm(request.POST)
+    response_data = {}
+    if request.method == 'POST' and form.is_valid():
+        title = form.cleaned_data['title']
+        description = form.cleaned_data['description']
+        creator = request.user.userprofile
+        new_forum = Forum.objects.create(creator=creator, title=title, description=description)
+        members = Members.objects.create(forum=new_forum)
+        members.subscriptor.add(creator)
+        # TODO Nanti ini ganti ke landing page utama
+        return redirect('forum:group-name')
+    
+    response_data['form'] = form
+    return render(request, "create_group.html", response_data)
 
 @login_required(login_url='/login/')
 def show_json(request):
@@ -67,4 +81,8 @@ def show_json_group(request, group_name):
     response_data['content'] = json.loads(serializers.serialize("json", content))
     response_data['member'] = json.loads(serializers.serialize("json", member))
     return JsonResponse(response_data)
-    
+
+@login_required(login_url='/login/')
+def get_group_name(request):
+    group_name = Forum.objects.values_list('title')
+    return JsonResponse({'name_list':list(group_name)[0]})

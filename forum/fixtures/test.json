@@ -1,0 +1,41 @@
+[
+    {
+        "model": "authen.content",
+        "pk": 1,
+        "fields": {
+            "creator": 1,
+            "title": "Si ...",
+            "description": "Dia jahat",
+            "is_captured": true,
+            "date_created": "2022-10-27T03:50:13.345Z",
+            "date_captured": "2022-10-27T03:50:01Z",
+            "photo": "web2_story.png"
+        }
+    },
+    {
+        "model": "authen.content",
+        "pk": 2,
+        "fields": {
+            "creator": 1,
+            "title": "Ini orang jahat 2",
+            "description": "Jahat banget dia",
+            "is_captured": false,
+            "date_created": "2022-10-27T03:51:03.791Z",
+            "date_captured": "2022-10-27T03:50:55Z",
+            "photo": "DnC_DaveTobing.png"
+        }
+    },
+    {
+        "model": "authen.content",
+        "pk": 6,
+        "fields": {
+            "creator": 2,
+            "title": "sdfsdf",
+            "description": "dsfsfs",
+            "is_captured": false,
+            "date_created": "2022-10-27T16:25:07.262Z",
+            "date_captured": null,
+            "photo": ""
+        }
+    }
+]
