@@ -31,6 +31,7 @@ function validate_input(id) {
 
 
 $(document).ready(function () {
+    $("#feedback-exist").hide();
     $.ajax({
         url: './name',
         dataType: 'json',
@@ -53,7 +54,6 @@ $(document).ready(function () {
                     event.stopPropagation()
                 }
                 $("#id_forum_name").on('input', function (e) {
-                    $("#feedback-exist").hide();
                     validate_input("id_forum_name");
                 });
                 form.classList.add('was-validated')

@@ -4,6 +4,13 @@ from forum.models import Forum
 import re
 
 class TaskForms(forms.ModelForm):
+    name_list = list(Forum.objects.values_list('title'))
+    pk_list = list(Forum.objects.values_list('pk'))
+    temp = []
+    for i in range(len(name_list)):
+        temp.append(tuple([pk_list[i][0], name_list[i][0]]))
+    forum_option = tuple(temp)
+    group = forms.MultipleChoiceField(choices=forum_option)
     class Meta:
         model = Content
         fields = [
