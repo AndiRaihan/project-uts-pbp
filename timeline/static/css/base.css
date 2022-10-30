@@ -1,0 +1,17 @@
+form {
+    margin: 2%;
+    width: 45vw;
+    padding: 1em;
+    border: 2px solid rgb(87, 73, 73);
+    border-radius: 1em;
+    font-size: 15px;
+}
+
+.top-buffer {
+    margin-top: 20px;
+}
+
+.btn-custom {
+    background: #7386D5;
+    color: #fff;
+}

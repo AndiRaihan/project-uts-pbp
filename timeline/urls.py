@@ -4,6 +4,7 @@ from timeline.views import *
 app_name = 'timeline'
 
 urlpatterns = [
+
     path('group/<str:group_name>', show_timeline, name='timeline'),
     path('group/<str:group_name>/<int:content_id>/comment', comment, name='comment'),
     path('', show_group, name='landing'),

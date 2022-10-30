@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+{% endblock meta %}
+
+{% block content %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Comments</title>
+</head>
+
+<body>
+    <!--content yang dikomen-->
+    <div class="row justify-content-center">
+        <div class="card col-lg-4 col-md-6 col-sm-12" style="width: 70rem;">
+            <div class="card-body">
+                <h2 class="card-text">{{content.title}}</h2>
+                <p class="card-text">Anonymous #{{content.creator.id}}</p>
+                <p class="card-text">{{content.description}}</p>
+            </div>
+        </div>
+    </div>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>Comments:</tr>
+            <tr><input type="text" name="comment" placeholder="Type here.." class="form-control"></tr>
+            <tr><input class="btn btn-primary" type="submit" value="Submit"></tr>
+        </table>
+    </form>
+
+    <!--komen komennya-->
+    <div class="row justify-content-center">
+        {% for comment in list_comment %}
+        <div class="card col-lg-4 col-md-6 col-sm-12" style="width: 60rem;">
+            <div class="card-body">
+                <h2 class="card-text">Anonymous #{{comment.user.id}}</h2>
+                <p class="card-text">{{comment.date_created}}</p>
+                <p class="card-text">{{comment.comment}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+   
+
+</body>
+{% endblock content %}

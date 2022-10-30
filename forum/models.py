@@ -12,4 +12,4 @@ class Forum(models.Model):
     
 class Members(models.Model):
     forum = models.OneToOneField(Forum, on_delete=models.CASCADE)
-    subscriptor = models.ManyToManyField(UserProfile) # Mau make ginian?
+    subscriptor = models.ManyToManyField(UserProfile) # Mau make ginian? 

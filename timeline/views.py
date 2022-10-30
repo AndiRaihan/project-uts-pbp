@@ -4,6 +4,7 @@ from forum.models import Forum
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from timeline.models import Comment
 from timeline.forms import CommentForms
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def show_timeline(request,group_name):
@@ -14,11 +15,13 @@ def show_timeline(request,group_name):
     else:
         user_name = "Anonymous"
     
+    
     context = {
         'list_forum': data,
         'user_name': user_name,
-    }
+    } 
     return render(request, "timeline.html", context)
+
 
 def show_group(request):
     data = Forum.objects.all()
@@ -27,6 +30,8 @@ def show_group(request):
     }
     return render(request,'home.html',context)
 
+# butuh @
+@login_required(login_url='/login/')
 def comment(request,group_name,content_id):
     content = Content.objects.get(id=content_id) 
     form = CommentForms(request.POST)
@@ -34,7 +39,7 @@ def comment(request,group_name,content_id):
     
     if request.method == 'POST' and form.is_valid():
         comment_form = form.cleaned_data['comment']
-        comment_obj = Comment.objects.create(comment_on=content, user=request.user.userprofile, commment=comment_form)
+        comment_obj = Comment.objects.create(commented_on=content, user=request.user.userprofile, comment=comment_form)
     
     
     data_comment = Comment.objects.filter(commented_on=content)
@@ -49,6 +54,7 @@ def comment(request,group_name,content_id):
 
         
 # butuh @
+@login_required(login_url='/login/')
 def delete(request, group_name, id):
     author_forum = Content.objects.get(id=id)
     
@@ -65,12 +71,13 @@ def delete(request, group_name, id):
 
 # belum jadi
 # butuh @
-def upvote(request,group_name, id):
-    content=Content.objects.get(id=id)
+@login_required(login_url='/login/')
+def upvote(request,group_name, content_id):
+    content=Content.objects.get(id=content_id)
     if request.user.userprofile in content.contentupvote.upvoter.all():
         content.contentupvote.upvoter.remove(request.user.userprofile)
     else:
         content.contentupvote.upvoter.add(request.user.userprofile)
     jumlah_upvote = content.contentupvote.upvoter.distinct().count()
     
-    return 
+    return redirect(f"../../")
