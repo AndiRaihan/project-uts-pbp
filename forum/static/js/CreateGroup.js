@@ -1,7 +1,7 @@
 
 var nameList = [];
 
-var urlRegex = /^[A-Za-z0-9-]*$/;
+var urlRegex = /^[A-Za-z0-9._~-]*$/;
 
 
 function validate_input(id) {
@@ -57,6 +57,7 @@ $(document).ready(function () {
                     event.preventDefault()
                     event.stopPropagation()
                 }
+                validate_input("id_forum_name");
                 $("#id_forum_name").on('input', function (e) {
                     validate_input("id_forum_name");
                 });
