@@ -86,4 +86,4 @@ def show_json_group(request, group_name):
 @login_required(login_url='/login/')
 def get_group_name(request):
     group_name = Forum.objects.values_list('title')
-    return JsonResponse({'name_list':list(group_name)[0]})
+    return JsonResponse({'name_list':list(group_name)})
