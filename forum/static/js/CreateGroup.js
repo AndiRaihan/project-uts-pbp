@@ -1,6 +1,8 @@
-var nameList = []
 
-var urlRegex = /^[A-Za-z0-9-]*$/
+var nameList = [];
+
+var urlRegex = /^[A-Za-z0-9-]*$/;
+
 
 function validate_input(id) {
     var element = document.getElementById(id);
@@ -36,7 +38,9 @@ $(document).ready(function () {
         url: './name',
         dataType: 'json',
         success: function (data) {
-            nameList = data.name_list;
+            for (var i = 0; i < data.name_list.length; i++){
+                nameList[i] = data.name_list[i][0];
+            }
         },
     });
 
