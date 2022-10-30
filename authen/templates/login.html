@@ -2,44 +2,53 @@
 
 {% block meta %}
 <title>Login</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
 {% endblock meta %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/header.css' %}">
+<header class="p-3 mb-3 border-bottom">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+        </a>
 
-<div class = "login">
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <button type="button" id="sidebarCollapse" class="btn btn-custom">
+                <i class="fas fa-align-right"  href="{% url 'authen:register' %}"></i>
+                <span>Register</span>
+            </button>
+        </ul>
 
-    <h1>Login</h1>
+      </div>
+    </div>
+  </header>
 
+<div class = "d-flex flex-column min-vh-100 justify-content-center align-items-center">
     <form method="POST" action="">
         {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
+        <div class="row">
+            <h1 style="text-align:center">Login</h1>
+        </div>
+        <div class="row top-buffer">
+            <div class="col-xl-2 align-self-center">
+                <label class="form-lable" for="id_title">Username</label>
+            </div>
+            <div class="col align-self-center">
+                <input type="text" name="username" placeholder="Username" class="form-control">
+            </div>
+        </div>
+        <div class="row top-buffer">
+            <div class="col-xl-2 align-self-center">
+                <label class="form-lable" for="id_description">Password</label>
+            </div>
+            <div class="col align-self-center">
+                <input type="password" name="password" placeholder="Password" class="form-control">
+            </div>
+        </div>
+        <input type="submit" name="submit" value="Login" class="btn btn-custom mx-auto d-block top-buffer">
     </form>
-
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}     
-        
-    Belum mempunyai akun? <a href="{% url 'authen:register' %}">Buat Akun</a>
-
 </div>
-
 {% endblock content %}
