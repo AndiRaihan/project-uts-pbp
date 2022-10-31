@@ -34,14 +34,7 @@
                 <label class="form-lable" for="#">Alias</label>
             </div>
             <div class="col align-self-center">
-                <input type="text" name="alias" value="{{ request.user.userprofile.alias }}" id="#" class="form-control"
-                    pattern="^[A-Za-z0-9._~-]*$">
-                <div class="invalid-feedback" id="feedback-url">
-                    Masukkan nama forum yang sesuai (hanya alphanumeric (case sensitive), ".", "_", "~", dan "-").
-                </div>
-                <div class="invalid-feedback" id="feedback-exist">
-                    Sudah ada forum dengan nama itu.
-                </div>
+                <input type="text" name="alias" value="{{ request.user.userprofile.alias }}" id="#" class="form-control">
             </div>
         </div>
 
