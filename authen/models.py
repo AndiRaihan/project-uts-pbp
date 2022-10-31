@@ -17,6 +17,7 @@ class Content(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_captured = models.DateTimeField(blank=True, null=True)
     photo = models.ImageField()
+    upvote_count = models.PositiveIntegerField(default=0)
     
     def get_creator_name(self):
         return self.creator.alias
