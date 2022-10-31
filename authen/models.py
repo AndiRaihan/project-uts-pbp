@@ -24,3 +24,7 @@ class Content(models.Model):
 class ContentUpvote(models.Model):
     content = models.OneToOneField(Content, on_delete=models.CASCADE)
     upvoter = models.ManyToManyField(UserProfile)
+    
+    def get_upvote(self):
+        return self.upvoter.distinct().count()
+    
