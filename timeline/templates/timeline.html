@@ -103,6 +103,7 @@
                 <div class="card-body">
                     <p class="card-text">{{post.description}}</p>
                     <p class="card-text">{{post.date_captured}}</p>
+                    <input type="hidden" value="{{post.id}}" id="id{{post.id}}">
                     <a href="{{request.path}}{{post.id}}/upvote" class="btn btn-primary">&#128316 Upvote {{post.contentupvote.get_upvote}}</a>
                     <a href="{{request.path}}{{post.id}}/comment" class="btn btn-primary">&#128488 Reply</a>
                     <br>
