@@ -12,4 +12,5 @@
   
   header {
     background-color: rgb(245, 246, 248);
+    position:fixed;
   }
