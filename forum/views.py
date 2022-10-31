@@ -15,9 +15,6 @@ from django.core import serializers
 import json
 # Create your views here.
 
-def show_home(request):
-    return render(request, 'home.html')
-
 @login_required(login_url='/login/')
 def create_post(request):
     form = TaskForms(request.POST)
@@ -80,10 +77,22 @@ def show_json_group(request, group_name):
     """
     response_data['forum'] = json.loads(serializers.serialize("json", [forum]))
     response_data['content'] = json.loads(serializers.serialize("json", content))
-    response_data['member'] = json.loads(serializers.serialize("json", member))
     return JsonResponse(response_data)
 
 @login_required(login_url='/login/')
 def get_group_name(request):
     group_name = Forum.objects.values_list('title')
     return JsonResponse({'name_list':list(group_name)})
+
+@login_required(login_url='/login/')
+def show_my_post(request):
+    user_name = request.user.username
+    data = Content.objects.filter(creator=request.user.userprofile)
+    context = {
+        'list_forum': data,
+        'user_name': user_name,
+    } 
+    return render(request, "my-post.html", context)
+
+def show_my_post_json(request):
+    pass
