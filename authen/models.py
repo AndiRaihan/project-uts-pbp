@@ -29,4 +29,3 @@ class ContentUpvote(models.Model):
     
     def get_upvote(self):
         return self.upvoter.distinct().count()
-    

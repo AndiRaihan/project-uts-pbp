@@ -15,3 +15,59 @@ form {
     background: #7386D5;
     color: #fff;
 }
+
+body{
+    background-color: #2C3333 !important;
+}
+h1, h3 {
+    color: white;
+    text-align: center;
+}
+.card{
+    padding: 15px;
+    background-color: white;
+    border-style: solid;
+    border-width: 3px 3px 3px 3px;
+    border-color: #DA0037;
+    border-radius: 20px;
+    margin-bottom: 35px;
+    margin-inline: 20px;
+    color: black;
+    transform:
+        rotateX(0deg)
+        rotateZ(0deg);
+    transform-style: preserve-3d;
+    display: inline-block;
+
+}
+.card:hover{
+    transform:
+        translate3d(0px, -7px, 0px)
+        rotateX(0deg)
+        rotateZ(0deg);
+}
+.card-text{
+    color: black;
+}
+.btn-upvote{
+    
+    padding: 10px 15px;
+    position: absolute;
+    left:    40px;
+    bottom:   10px;
+    background-color: #DA0037;
+    color: white;
+    border-radius: 20px;
+}
+.btn-reply{
+    padding: 10px 15px;
+    position: absolute;
+    left:    175px;
+    bottom:   10px;
+    background-color: #DA0037;
+    color: white;
+    border-radius: 20px;
+}
+header {
+    background-color: #DA0037 !important;
+}

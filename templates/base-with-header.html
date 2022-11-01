@@ -64,11 +64,11 @@
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <img src="{{ request.user.userprofile.image.url }}"
+                        <img src="https://www.nicepng.com/png/detail/202-2024580_png-file-profile-icon-vector-png.png"
                             alt="mdo" width="35" height="35" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small">
-                        <li><a class="dropdown-item" href="{% url 'profile_page:my-profile' %}">Profile</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -82,6 +82,35 @@
             </div>
         </div>
     </header>
+
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div id="dismiss">
+            <i class="bi bi-x-lg"></i>
+        </div>
+
+        <div class="sidebar-header">
+            <h4>Whistle Blower</h4>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li>
+                <a href="{% url 'timeline:landing' %}">Homepage</a>
+            </li>
+            <li>
+                <a href="#">Hall of Shame</a>
+            </li>
+        </ul>
+
+        <ul class="list-unstyled CTAs">
+            <li class="top-buffer">
+                <a href="{% url 'forum:create-group' %}" class="download top-buffer">Create Forum</a>
+            </li>
+            <li class="top-buffer">
+                <a href="{% url 'forum:create-post' %}" class="article top-buffer">Create Post</a>
+            </li>
+        </ul>
+    </nav>
 
     <!-- Sidebar  -->
     <nav id="sidebar">

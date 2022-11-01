@@ -48,12 +48,13 @@
                     <div class="col-md-1">
                         <div class="dropdown text-end">
                             <a href="#" class="d-block link-dark text-decoration-none" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                                aria-expanded="false" onclick="$('#id_id_post').val('{{post.id}}')">
                                 <i class="bi bi-three-dots-vertical" alt="mdo" width="35" height="35"
                                     class="rounded-circle"></i>
                             </a>
                             <ul class="dropdown-menu text-small">
-                                <li><a class="dropdown-item" href="#">Edit</a></li>
+                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                        data-bs-target="#modalTambahTask">Edit</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -79,6 +80,79 @@
         </div>
         {% endif %}
         {% endfor %}
+    </div>
+    <div class="modal fade" id="modalTambahTask" tabindex="-1" aria-labelledby="modalTambahTaskLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalTambahTaskLabel">Edit Post</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        onclick="resetForm();"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="needs-validation" method="POST" action="" id="form-edit-post" style="width:auto;"
+                        novalidate>
+                        {% csrf_token %}
+                        <div class="row top-buffer">
+                            <div class="col-xl-3 align-self-center">
+                                <label class="form-lable" for="id_title">Name </label>
+                            </div>
+                            <div class="col align-self-center">
+                                <input type="text" name="title" placeholder="Nama Penjahat" id="id_title"
+                                    class="form-control" required>
+                                <div class="invalid-feedback">
+                                    Masukkan Nama Yang Sesuai.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row top-buffer">
+                            <div class="col-xl-3 align-self-center">
+                                <label class="form-lable" for="id_description">Description</label>
+                            </div>
+                            <div class="col align-self-center">
+                                <input type="text" name="description" placeholder="Jelaskan Kejahatannya"
+                                    id="id_description" class="form-control" required>
+                                <div class="invalid-feedback">
+                                    Masukkan penjelasan Kejahatannya.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row top-buffer">
+                            <div class="col-xl-3 align-self-center">
+                                <label class="form-lable" for="id_checkbox">Tertangkap?</label>
+                            </div>
+                            <div class="col align-self-center">
+                                <input value="Tertangkap" type="checkbox" name="is_captured" id="id_checkbox"
+                                    onclick="$('#input-date').toggleClass('d-none');">
+                                <div class="invalid-feedback">
+                                    Masukkan penjelasan Kejahatannya.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row top-buffer d-none" id="input-date">
+                            <div class="col-xl-3 align-self-center">
+                                <label class="form-lable" for="id_capture_date">Tanggal Ditangkap</label>
+                            </div>
+                            <div class="col align-self-center">
+                                <input type="date" name="date_captured" id="id_capture_date" class="form-control"
+                                    required>
+                                <div class="invalid-feedback">
+                                    Masukkan Tanggal ditangkapnya
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" value="2" id="id_id_post">
+                </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        onclick="resetForm();">Close</button>
+                    <input type="submit" name="submit" id="addButton" value="Tambah" class="btn btn-primary"
+                        onclick="editPost();">
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 {% endblock content %}

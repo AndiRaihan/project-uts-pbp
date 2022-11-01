@@ -15,4 +15,5 @@ urlpatterns = [
     path('mypost/<int:content_id>/delete/', delete, name='delete'),
     path('mypost/<int:content_id>/upvote/', upvote_ajax, name='mypost-upvote'),
     path('mypost/<int:content_id>/comment/', comment, name='mypost-comment'),
+    path('mypost/<int:content_id>/edit/', edit_post, name='mypost-edit'),
 ]
