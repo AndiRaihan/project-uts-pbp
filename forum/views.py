@@ -96,3 +96,24 @@ def show_my_post(request):
 
 def show_my_post_json(request):
     pass
+
+def edit_post(request, content_id):
+    form = TaskForms(request.POST)
+    response_data = {}
+    nama = request.POST.get('name')
+    description = request.POST.get('description')
+    if request.method == 'POST' and nama != '' and description != '':
+        id = request.POST.get('id')
+        post = Content.objects.get(id=id)
+        if request.POST.get('is_captured') == "true":
+            if (request.POST.get('date_captured') != ''):
+                # TODO Edit isi dari post-nya
+                print(request.POST.get('date_captured'))
+                response_data['msg'] = "success"
+                return JsonResponse(response_data)
+        else:
+            # TODO edit isi dari post-nya
+            response_data['msg'] = "success"
+            return JsonResponse(response_data)
+    response_data['msg'] = "fail"
+    return JsonResponse(response_data)
