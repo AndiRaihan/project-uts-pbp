@@ -5,6 +5,126 @@
 {% endblock meta %}
 
 {% block content %}
+
+<style>
+    body{
+        background-color: #2C3333 !important;
+    }
+    h1, h3 {
+        color: white;
+        text-align: center;
+    }
+    .card{
+        padding: 15px;
+        background-color: white;
+        border-style: solid;
+        border-width: 3px 3px 3px 3px;
+        border-color: #DA0037;
+        border-radius: 20px;
+        margin-bottom: 35px;
+        margin-inline: 20px;
+        color: black;
+        transform:
+            rotateX(0deg)
+            rotateZ(0deg);
+        transform-style: preserve-3d;
+        display: inline-block;
+
+    }
+    .card:hover{
+        transform:
+            translate3d(0px, -7px, 0px)
+            rotateX(0deg)
+            rotateZ(0deg);
+    }
+    .card-text{
+        color: black;
+    }
+    .btn-upvote{
+        
+        padding: 10px 15px;
+        position: absolute;
+        left:    40px;
+        bottom:   10px;
+        background-color: #DA0037;
+        color: white;
+        border-radius: 20px;
+    }
+    .btn-reply{
+        padding: 10px 15px;
+        position: absolute;
+        left:    175px;
+        bottom:   10px;
+        background-color: #DA0037;
+        color: white;
+        border-radius: 20px;
+    }
+    header {
+        background-color: #DA0037 !important;
+    }
+</style>
+
+<link rel="stylesheet" href="{% static 'css/header.css' %}">
+<link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+<header class="p-3 mb-3 border-bottom sticky-top" id="header">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <button type="button" id="sidebarCollapse" class="btn btn-custom">
+                <i class="fas fa-align-left"></i>
+                <span>Menu</span>
+            </button>
+            <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-align-justify"></i>
+            </button>
+        </ul>
+
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-dark text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://www.nicepng.com/png/detail/202-2024580_png-file-profile-icon-vector-png.png" alt="mdo" width="35" height="35" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small">
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div id="dismiss">
+            <i class="bi bi-x-lg"></i>
+        </div>
+
+        <div class="sidebar-header">
+            <h4>Whistle Blower</h4>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li>
+                <a href="{% url 'timeline:landing' %}">Homepage</a>
+            </li>
+            <li>
+                <a href="#">Hall of Shame</a>
+            </li>
+        </ul>
+
+        <ul class="list-unstyled CTAs">
+            <li>
+                <a href="{% url 'forum:create-group' %}" class="download">Create Forum</a>
+            </li>
+            <li>
+                <a href="{% url 'forum:create-post' %}" class="article">Create Post</a>
+            </li>
+        </ul>
+    </nav>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,12 +135,13 @@
 
     <h1>Timeline</h1>
     <h3>Halo {{user_name}}</h3>
+    <p>   </p>
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="margin-inline:100px; margin-top:50px;">
         
         {% for post in list_forum %}
         {% if post.is_captured %}
-            <div class="card text-white bg-dark mb-3" style="width: 60rem;">
+            <div class="card" style="width: 20rem; border-color: #DA0037;">
                 <div class="card-header">
                     <h2 class="card-title">{{post.title}}</h2>
                     <p class="card-text">Written by: Anonymous #{{post.creator.id}}</p>
@@ -28,16 +149,18 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">{{post.description}}</p>
-                    <p class="card-text">{{post.date_captured}}</p>
-                    <input type="hidden" value="{{post.id}}" id="id{{post.id}}">
-                    <a href="{{request.path}}{{post.id}}/upvote" class="btn btn-primary">&#128316 Upvote {{post.contentupvote.get_upvote}}</a>
-                    <a href="{{request.path}}{{post.id}}/comment" class="btn btn-primary">&#128488 Reply</a>
+
+                    <p class="card-text">Tanggal tertankap{{post.date_captured}}</p>
+                    <br>
+                    <a href="{{request.path}}{{post.id}}/upvote" class="btn-upvote">&#128316 Upvote {{post.contentupvote.get_upvote}}</a>
+                    <a href="{{request.path}}{{post.id}}/comment" class="btn-reply">&#128488 Reply</a>
+
                     <br>
                 </div>
             </div>
         {% else %}
-            <div class="card bg-light mb-3" style="width: 60rem;">
-                <div class="card-header">
+            <div class="card" style="width: 20rem;border-color: white;">
+                <div class="card-header" style="background-color:white;">
                     <h2 class="card-title">{{post.title}}</h2>
                     <p class="card-text">Written by: Anonymous #{{post.creator.id}}</p>
                     <p class="card-text">{{post.date_created}}
@@ -47,10 +170,14 @@
                     {% if post.is_captured %}
                     <p class="card-text">{{post.date_captured}}</p>
                     {% endif %}
-                    <a href="{{request.path}}{{post.id}}/upvote" class="btn btn-primary">&#128316 Upvote {{post.contentupvote.get_upvote}}</a>
-                    <a href="{{request.path}}{{post.id}}/comment" class="btn btn-primary">&#128488 Reply</a>
                     <br>
+                    <a href="{{request.path}}{{post.id}}/upvote" class="btn-upvote">&#128316 Upvote {{post.contentupvote.get_upvote}}</a>
+                    <a href="{{request.path}}{{post.id}}/comment" class="btn-reply">&#128488 Reply</a>
                 </div>
+                <!--div class="card-footer" style="background-color:white;">
+                    <a href="{{request.path}}{{post.id}}/upvote" class="btn">&#128316 Upvote {{post.contentupvote.get_upvote}}</a>
+                    <a href="{{request.path}}{{post.id}}/comment" class="btn">&#128488 Reply</a>
+                </div-->
             </div>
         {% endif %}
         {% endfor %}
