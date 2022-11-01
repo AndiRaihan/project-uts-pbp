@@ -1,0 +1,32 @@
+.card {
+box-shadow: 0 0  8px rgb(212, 206, 206);
+}
+.card:hover {
+transform: translateY(-3px);
+}
+button {
+border: none;
+border-radius: 4px;
+}
+button:hover {
+box-shadow: 0 0 4px rgb(152, 144, 144);
+}
+button:active {
+transform: translateY(-2px);
+}
+.btn {
+border: none;
+margin-top: auto;
+}
+.checklist-btn {
+background: none;
+margin-top: auto;
+}
+.delete-btn {
+background-color: rgb(197, 38, 38);
+color: white;
+margin-top: auto;
+}
+.close {
+background: none;
+}
