@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'forum',
     'timeline',
     'profile_page',
+    'hall_of_shame',
 ]
 
 MIDDLEWARE = [

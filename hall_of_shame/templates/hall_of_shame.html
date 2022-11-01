@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  {% block meta %}
+  {% endblock meta %}
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  {% block content %}
+  <div class="container">
+    <div class="title" style="padding-top: 7px; padding-left: 7px; padding-right: 7px;">
+      <h2><font>Hall Of Shame</font></h2>
+      <button id="create-btn" data-bs-toggle="modal" data-bs-target="#addCorruptorModal"><font>Add Corruptor</font></button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row mt-1" id="cardContainer" style="padding-top: 1px; padding-left: 7px; padding-right:7px; padding-bottom: 7px;"></div>
+  </div>
+
+  <div class="modal fade" id="addCorruptorModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title"><font>ADD CORRUPTOR</font></h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="addCorruptorForm" onsubmit="return false;">
+          {% csrf_token %}
+          <div class="modal-body">
+            <fieldset>
+                <input type="text" name="name" placeholder="Name" class="form-control mb-2">
+                <input type="text" name="arrested_date" placeholder="Arrested Date: YYYY-MM-DD" class="form-control mb-2">
+                <input type="text" name="corruption_type" placeholder="Corruption Type" class="form-control mb-2">
+                <textarea name="description" class="form-control" placeholder="Description" style="height:200px; width:100%"></textarea>
+            </fieldset>
+          </div>
+          <div class="modal-footer border-0">
+            <button id="btn-submit" class="btn btn-primary" value="Submit" type="submit" data-bs-dismiss="modal">Submit</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
+  <script src="{% static 'base.js' %}"></script>
+  
+</body>
+{% endblock content %}
+</html>
