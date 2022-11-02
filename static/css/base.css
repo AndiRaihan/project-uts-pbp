@@ -11,8 +11,13 @@ form {
     margin-top: 20px;
 }
 
-.btn-custom {
+.btn-custom-header {
     background: #2C3333;
+    color: #fff;
+}
+
+.btn-custom {
+    background: #DA0037 !important;
     color: #fff;
 }
 
@@ -54,7 +59,6 @@ label {
     color: black;
 }
 .btn-upvote{
-    
     padding: 10px 15px;
     position: absolute;
     left:    40px;
@@ -74,4 +78,7 @@ label {
 }
 header {
     background-color: #DA0037 !important;
+}
+.regist{
+    background-color: #aea9a9 
 }
