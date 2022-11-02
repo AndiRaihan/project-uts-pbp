@@ -15,7 +15,6 @@ def show_hall_of_shame(request):
     data = Corruptor.objects.all()
     if request.user.userprofile.is_admin:
         return render(request, 'hall_of_shame.html', {'data':data})
-    print("apan")
     return render(request, 'hall_of_shame_user.html', {'data':data})
 
 
