@@ -16,36 +16,60 @@
 <body>
     <!--content yang dikomen-->
     <div class="row justify-content-center">
-        <div class="card col-lg-4 col-md-6 col-sm-12" style="width: 70rem;">
+        <div class="card col-lg-4 col-md-6 col-sm-12" style="width: 85rem;">
             <div class="card-body">
-                <h2 class="card-text">{{content.title}}</h2>
-                <p class="card-text">Anonymous #{{content.creator.id}}</p>
+                <h4 class="card-text">{{content.title}}</h4>
+                <p class="card-text">Written by: Anonymous #{{content.creator.id}}</p>
                 <p class="card-text">{{content.description}}</p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <table>
+                        <tr>Comments:</tr>
+                        <tr><br></tr>
+                        <tr><input type="text" name="comment" placeholder="Type here.." class="form-control"></tr>
+                        <tr><br></tr>
+                        <tr><input class="btn" type="submit" value="Submit"></tr>
+                    </table>
+                </form>
+                <div class="row justify-content-center" style="margin-inline:10px; margin-top:25px;">
+                    {% for comment in list_comment %}
+                    <div id="comment-card" class="card col-lg-4 col-md-6 col-sm-12" style="width: 20rem;">
+                        <div class="card-body">
+                            <h4 class="card-text">Anonymous #{{comment.user.id}}</h4>
+                            <p class="card-text">{{comment.date_created}}</p>
+                            <p class="card-text">{{comment.comment}}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
     
-    <form method="POST">
-        {% csrf_token %}
-        <table>
-            <tr>Comments:</tr>
-            <tr><input type="text" name="comment" placeholder="Type here.." class="form-control"></tr>
-            <tr><input class="btn btn-primary" type="submit" value="Submit"></tr>
-        </table>
-    </form>
+    <!--form comment-->
+        <!--form method="POST">
+            {% csrf_token %}
+            <table>
+                <tr>Comments:</tr>
+                <tr><br></tr>
+                <tr><input type="text" name="comment" placeholder="Type here.." class="form-control"></tr>
+                <tr><br></tr>
+                <tr><input class="btn btn-primary" type="submit" value="Submit"></tr>
+            </table>
+        </form>
 
     <!--komen komennya-->
-    <div class="row justify-content-center">
+    <!--div class="row justify-content-center" style="margin-inline:100px; margin-top:25px;">
         {% for comment in list_comment %}
-        <div class="card col-lg-4 col-md-6 col-sm-12" style="width: 60rem;">
+        <div class="card col-lg-4 col-md-6 col-sm-12" style="width: 20rem;">
             <div class="card-body">
-                <h2 class="card-text">Anonymous #{{comment.user.id}}</h2>
+                <h4 class="card-text">Anonymous #{{comment.user.id}}</h4>
                 <p class="card-text">{{comment.date_created}}</p>
                 <p class="card-text">{{comment.comment}}</p>
             </div>
         </div>
         {% endfor %}
-    </div>
+    </div-->
    
 
 </body>
