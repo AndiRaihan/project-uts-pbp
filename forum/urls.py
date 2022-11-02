@@ -1,6 +1,6 @@
 from django.urls import path
 from forum.views import *
-from timeline.views import delete, upvote, upvote_ajax, comment
+from timeline.views import delete, upvote, upvote_ajax, comment, add_comment, comment_json
 
 app_name = 'forum'
 
@@ -15,5 +15,7 @@ urlpatterns = [
     path('mypost/<int:content_id>/delete/', delete, name='delete'),
     path('mypost/<int:content_id>/upvote/', upvote_ajax, name='mypost-upvote'),
     path('mypost/<int:content_id>/comment/', comment, name='mypost-comment'),
+    path('mypost/<int:content_id>/comment/json/', comment_json, name='mypost-comment'),
+    path('mypost/<int:content_id>/comment/add/', add_comment, name='mypost-comment'),
     path('mypost/<int:content_id>/edit/', edit_post, name='mypost-edit'),
 ]

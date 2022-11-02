@@ -1,3 +1,4 @@
+{% extends 'base-with-header.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -17,13 +18,13 @@
   {% block content %}
   <div class="container">
     <div class="title" style="padding-top: 7px; padding-left: 7px; padding-right: 7px;">
-      <h2><font>Hall Of Shame</font></h2>
+      <h2 style="color: white;"><font>Hall Of Shame</font></h2>
       <button id="create-btn" data-bs-toggle="modal" data-bs-target="#addCorruptorModal"><font>Add Corruptor</font></button>
     </div>
   </div>
 
-  <div class="container">
-    <div class="row mt-1" id="cardContainer" style="padding-top: 1px; padding-left: 7px; padding-right:7px; padding-bottom: 7px;"></div>
+  <div id="cardContainer">
+    <div  style="width: 20rem;"></div>
   </div>
 
   <div class="modal fade" id="addCorruptorModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -35,7 +36,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form id="addCorruptorForm" onsubmit="return false;">
+        <form id="addCorruptorForm" onsubmit="return false;" style="width:auto;">
           {% csrf_token %}
           <div class="modal-body">
             <fieldset>

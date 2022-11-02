@@ -30,8 +30,8 @@ def create_post(request):
             for pk in forum_id:
                 forum = Forum.objects.get(id=pk)
                 forum.contents.add(content_baru)
-            return redirect('forum:json') # --> Nanti redirect ke page sebelumnya
-            return HttpResponse(serializers.serialize("json", content_baru), content_type="application/json")
+            return redirect('timeline:landing')
+            
         else:
             messages.info(request, 'Input anda tidak valid')
     response_data['form'] = form
@@ -50,7 +50,7 @@ def create_group(request):
         members = Members.objects.create(forum=new_forum)
         members.subscriptor.add(creator)
         # TODO Nanti ini ganti ke landing page utama
-        return redirect('forum:group-name')
+        return redirect('timeline:landing')
     
     response_data['form'] = form
     return render(request, "create_group.html", response_data)
