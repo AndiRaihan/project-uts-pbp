@@ -21,7 +21,7 @@
         <div class="card col-lg-4 col-md-6 col-sm-12" style="width: 60rem;">
             <div class="card-body">
                 <h4 class="card-text">{{content.title}}</h4>
-                <p class="card-text">Written by: Anonymous #{{content.creator.id}}</p>
+                <p class="card-text">Written by: {{content.creator.alias}} #{{content.creator.id}}</p>
                 <p class="card-text">{{content.description}}</p>
             </div>
             <div class="card-footer">
@@ -43,6 +43,17 @@
 
 
     <!--komen komennya-->
+
+    <div class="row justify-content-center" style="margin-inline:100px; margin-top:25px;">
+        {% for comment in list_comment %}
+        <div class="card col-lg-4 col-md-6 col-sm-12" style="width: 15rem;">
+            <div class="card-body">
+                <h4 class="card-text">{{comment.user.alias}} #{{comment.user.id}}</h4>
+                <p class="card-text">{{comment.date_created}}</p>
+                <p class="card-text">{{comment.comment}}</p>
+            </div>
+        </div>
+        {% endfor %}
     <div id="container-comment" class="row justify-content-center" style="margin-inline:100px; margin-top:25px;">
     </div>
 
