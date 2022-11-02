@@ -6,9 +6,11 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.core import serializers
 from hall_of_shame.models import Corruptor
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 @csrf_exempt
+@login_required(login_url='/login/')
 def show_hall_of_shame(request):
     data = Corruptor.objects.all()
     return render(request, 'hall_of_shame.html', {'data':data})

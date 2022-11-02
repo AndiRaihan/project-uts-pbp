@@ -3,6 +3,9 @@
 {% block meta %}
 <title>Create Post</title>
 {% load static %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<link rel="stylesheet" href="{% static 'css/header.css' %}">
+<link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
 {% endblock meta %}
 
 {% block content %}
@@ -47,7 +50,7 @@
                 </select>
             </div>
         </div>
-        <input type="submit" name="submit" value="Create" class="btn btn-custom mx-auto d-block top-buffer">
+        <input type="submit" name="submit" value="Create" class="btn btn-custom mx-auto d-block top-buffer" style="background-color:#DA0037">
     </form>
 </div>
 {% endblock content %}

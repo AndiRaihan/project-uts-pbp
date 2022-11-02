@@ -14,22 +14,32 @@
 
 <body>
     
+    <div class="container" id="container-top">
+        <p class="name-apk">Whistleblower</p>
+        <div class="row-image">
+            <img class="image-application" src="{% static 'images/landing.png' %}">
+        </div>
+    </div>
 
-
-    <h1>Home</h1>
+    
 
     <!--di sini mau nampilin apa aja?-->
-    <div class="row">
-        {% for group in list_group %}
-        <div class="card col-lg-4 col-md-6 col-sm-12" style="width: 18rem;">
-            <div class="card-body">
-                <a href="./group/{{group.title}}" style="text-decoration:none; color:black;"><h2 class="card-title">{{group.title}}</h2></a>
-                <p class="card-text">Written by : {{group.creator.alias}} #{{group.creator.id}}</p>
-                <p class="card-text">{{group.date_created}}</p>
-                <p class="card-text">{{group.description}}</p>
+    <div class="container" id="container-2">
+        <br>
+        <h1>Forum</h1>
+        <br>
+        <div class="row">
+            {% for group in list_group %}
+            <div class="card col-lg-4 col-md-6 col-sm-12" style="width: 18rem;">
+                <div class="card-body" id="card-forum">
+                    <a href="./group/{{group.title}}" style="text-decoration:none; color:black;"><h2 class="card-title">{{group.title}}</h2></a>
+                    <p class="card-text">Written by : Anonymous #{{group.creator.id}}</p>
+                    <p class="card-text">{{group.date_created}}</p>
+                    <p class="card-text">{{group.description}}</p>
+                </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 
 </body>
