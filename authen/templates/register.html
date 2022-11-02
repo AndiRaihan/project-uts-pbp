@@ -7,17 +7,44 @@
 {% endblock meta %}
 
 {% block content %} 
-
+<script>
+    $(document).on('submit', '#signup-form', function(e){
+      e.preventDefault();
+  
+        $.ajax({
+            type:'POST',
+            url:"{% url 'authen:register' %}",
+            data:$('#signup-form').serialize(),
+            dataType:"json",
+            header: {'X-CSRFToken': '{% csrf_token %}'},
+            success: function(response){
+            var success = response['success']
+            if (success){
+              alert("Akun berhasil terdaftar! Silahkan login.");
+              window.location.href = "../login/";
+            }
+            else {
+              alert("Pendaftaran akun gagal! Silakan coba lagi.");
+              for(var msg in response['error']) {
+                var txt = JSON.stringify(response['error'][msg]);
+                document.getElementById("error").innerHTML = txt.replace(/[&\/\\#,\]+()$~%['":*?<>{}]/g, '');
+                }
+            }
+          },
+      });
+    });
+  </script>
+  
 <div class = "d-flex flex-column min-vh-100 justify-content-center align-items-center">
     
-        <form method="POST" >  
+        <form method="POST" class="regist" id="signup-form">  
             <div class="row">
                 <h1 style="text-align:center">Registration Form</h1>
             </div>
             <div class="row top-buffer">
                 <div class="col-xl align-self-center">
                     {% csrf_token %}  
-                    <table class="text-start vertical-align">  
+                    <table class="text-start table table-borderless vertical-align">  
                         {{ form.as_table }}  
                         <tr>  
                             <td></td>
