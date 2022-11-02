@@ -1,3 +1,26 @@
+#container-top{
+    justify-content: center;
+    padding:130px;
+}
+#container-2{
+    padding-bottom: 50px;
+}
+.name-apk{
+    font-size: 70px;
+    text-align: center;
+    color:white;
+    font-family: Candara;
+    font-weight: bolder;
+}
+.row-image{
+    justify-content: center;
+    text-align: center;
+}
+.image-application{
+    justify-content: center;
+    width: 50%;
+}
+
 form {
     margin: 2%;
     width: 45%;
@@ -6,7 +29,12 @@ form {
     border-radius: 1em;
     font-size: 15px;
 }
-
+#form-comment {
+    font-size: 14px;
+    margin: auto;
+    width: auto;
+    border-width: 0cm;
+}
 .top-buffer {
     margin-top: 20px;
 }
@@ -27,18 +55,20 @@ body{
 h1, h3 {
     color: white;
     text-align: center;
+    font-family: century gothic;
+    font-weight: bold;
 }
 label {
     color: white;
 }
 
 .card{
-    padding: 15px;
+    padding: 10px;
     background-color: white;
     border-style: solid;
     border-width: 3px 3px 3px 3px;
     border-color: #DA0037;
-    border-radius: 20px;
+    border-radius: 15px;
     margin-bottom: 35px;
     margin-inline: 20px;
     color: black;
@@ -46,7 +76,8 @@ label {
         rotateX(0deg)
         rotateZ(0deg);
     transform-style: preserve-3d;
-    display: inline-block;
+    display:inline-block;
+    line-height: 25px;
 
 }
 .card:hover{
@@ -55,9 +86,22 @@ label {
         rotateX(0deg)
         rotateZ(0deg);
 }
+.card-title{
+    font-family:monospace;
+    font-weight: bold;
+}
 .card-text{
     color: black;
+    line-height: 25px;
+    font-family: Segoe UI;
 }
+.card-header{
+    text-align: center;
+}
+.card-footer{
+    background-color: #fff;
+}
+
 .btn-upvote{
     padding: 10px 15px;
     position: absolute;
@@ -67,6 +111,7 @@ label {
     color: white;
     border-radius: 20px;
 }
+
 .btn-reply{
     padding: 10px 15px;
     position: absolute;
@@ -76,6 +121,18 @@ label {
     color: white;
     border-radius: 20px;
 }
+.btn-comment{
+    padding: 10px 15px;
+    background-color:#DA0037;
+    color:#fff;
+    border-radius: 20px;
+    border-color:#DA0037;
+}
+.btn-comment:hover{
+    background-color: #fff;
+    color:#DA0037;
+}
+
 header {
     background-color: #DA0037 !important;
 }
