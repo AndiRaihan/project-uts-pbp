@@ -32,7 +32,7 @@ def show_group(request):
 
 # butuh @
 @login_required(login_url='/login/')
-def comment(request,group_name,content_id):
+def comment(request,content_id, group_name=""):
     content = Content.objects.get(id=content_id) 
     form = CommentForms(request.POST)
     response_data = {}
@@ -72,12 +72,30 @@ def delete(request, group_name, id):
 # belum jadi
 # butuh @
 @login_required(login_url='/login/')
-def upvote(request,group_name, content_id):
+def upvote(request, content_id, group_name=""):
     content=Content.objects.get(id=content_id)
+    upvote_count = content.upvote_count
     if request.user.userprofile in content.contentupvote.upvoter.all():
         content.contentupvote.upvoter.remove(request.user.userprofile)
+        upvote_count += -1
     else:
         content.contentupvote.upvoter.add(request.user.userprofile)
-    jumlah_upvote = content.contentupvote.upvoter.distinct().count()
-    
+        upvote_count += 1
+    content.upvote_count = upvote_count
+    content.save()
     return redirect(f"../../")
+
+@login_required(login_url='/login/')
+def upvote_ajax(request, content_id, group_name=""):
+    content=Content.objects.get(id=content_id)
+    upvote_count = content.upvote_count
+    print(upvote_count)
+    if request.user.userprofile in content.contentupvote.upvoter.all():
+        content.contentupvote.upvoter.remove(request.user.userprofile)
+        upvote_count -= 1
+    else:
+        content.contentupvote.upvoter.add(request.user.userprofile)
+        upvote_count += 1
+    content.upvote_count = upvote_count
+    content.save()
+    return JsonResponse({'upvote': content.upvote_count})
