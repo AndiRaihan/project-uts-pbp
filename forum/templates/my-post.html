@@ -3,6 +3,7 @@
 {% block meta %}
 {% load static %}
 <title>My Post</title>
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
 {% endblock meta %}
 
 {% block content %}
@@ -24,8 +25,7 @@
     <h3>Halo {{user_name}}</h3>
 
     <div id="my-post" class="row justify-content-center" style="margin-inline:100px; margin-top:50px;">
-        
-       
+      
     </div>
     <div class="modal fade" id="modalTambahTask" tabindex="-1" aria-labelledby="modalTambahTaskLabel"
         aria-hidden="true">

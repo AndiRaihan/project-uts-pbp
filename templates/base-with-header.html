@@ -50,7 +50,7 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <button type="button" id="sidebarCollapse" class="btn btn-custom">
+                    <button type="button" id="sidebarCollapse" class="btn btn-custom-header">
                         <i class="fas fa-align-left"></i>
                         <span>Menu</span>
                     </button>
@@ -93,7 +93,7 @@
                 <a href="{% url 'timeline:landing' %}">Homepage</a>
             </li>
             <li>
-                <a href="#">Hall of Shame</a>
+                <a href="{% url 'hall_of_shame:show_hall_of_shame' %}">Hall of Shame</a>
             </li>
         </ul>
 
@@ -107,34 +107,6 @@
         </ul>
     </nav>
 
-    <!-- Sidebar  -->
-    <nav id="sidebar">
-        <div id="dismiss">
-            <i class="fas fa-arrow-left"></i>
-        </div>
-
-        <div class="sidebar-header">
-            <h4>Whistle Blower</h4>
-        </div>
-
-        <ul class="list-unstyled components">
-            <li>
-                <a href="{% url 'timeline:landing' %}">Homepage</a>
-            </li>
-            <li>
-                <a href="#">Hall of Shame</a>
-            </li>
-        </ul>
-
-        <ul class="list-unstyled CTAs">
-            <li class="top-buffer">
-                <a href="{% url 'forum:create-group' %}" class="download top-buffer">Create Forum</a>
-            </li>
-            <li class="top-buffer">
-                <a href="{% url 'forum:create-post' %}" class="article top-buffer">Create Post</a>
-            </li>
-        </ul>
-    </nav>
     {% block content %}
     {% endblock content %}
 </body>
