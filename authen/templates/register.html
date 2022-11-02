@@ -10,14 +10,14 @@
 
 <div class = "d-flex flex-column min-vh-100 justify-content-center align-items-center">
     
-        <form method="POST" >  
+        <form method="POST" class="regist">  
             <div class="row">
                 <h1 style="text-align:center">Registration Form</h1>
             </div>
             <div class="row top-buffer">
                 <div class="col-xl align-self-center">
                     {% csrf_token %}  
-                    <table class="text-start vertical-align">  
+                    <table class="text-start table table-borderless vertical-align">  
                         {{ form.as_table }}  
                         <tr>  
                             <td></td>

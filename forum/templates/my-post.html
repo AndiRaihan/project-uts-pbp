@@ -3,6 +3,7 @@
 {% block meta %}
 {% load static %}
 <title>My Post</title>
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
 {% endblock meta %}
 
 {% block content %}
@@ -37,7 +38,7 @@
                 <p class="card-text">{{post.date_captured}}</p>
                 <input type="hidden" value="{{post.id}}" id="id{{post.id}}">
                 <!-- <a href="{{request.path}}{{post.id}}/upvote" class="btn btn-primary">&#128316 Upvote {{post.contentupvote.get_upvote}}</a> -->
-                <button class="btn btn-primary" onclick="upvote('{{post.id}}');" id="upvote{{post.id}}">&#128316 Upvote
+                <button class="btn btn-custom" onclick="upvote('{{post.id}}');" id="upvote{{post.id}}">&#128316 Upvote
                     {{post.contentupvote.get_upvote}}</button>
                 <a href="{{request.path}}{{post.id}}/comment" class="btn btn-primary">&#128488 Reply</a>
                 <br>
