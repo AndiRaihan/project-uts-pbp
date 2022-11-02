@@ -94,8 +94,10 @@ def show_my_post(request):
     } 
     return render(request, "my-post.html", context)
 
+@login_required(login_url='/login/')
 def show_my_post_json(request):
-    pass
+    content = Content.objects.filter(creator=request.user.userprofile)
+    return HttpResponse(serializers.serialize("json", content), content_type="application/json")
 
 def edit_post(request, content_id):
     form = TaskForms(request.POST)
@@ -108,12 +110,36 @@ def edit_post(request, content_id):
         if request.POST.get('is_captured') == "true":
             if (request.POST.get('date_captured') != ''):
                 # TODO Edit isi dari post-nya
-                print(request.POST.get('date_captured'))
+                post.title = nama
+                post.description = description
+                post.is_captured = True
+                post.date_captured = request.POST.get('date_captured')
+                post.save()
                 response_data['msg'] = "success"
+                response_data['title'] = nama
+                response_data['id'] = id
+                response_data['description'] = description
+                response_data['is_captured'] = True
+                response_data['date_captured'] = request.POST.get('date_captured')
+                response_data['date_created'] = post.date_created
+                response_data['upvote_count'] = post.upvote_count
+                response_data['creator_id'] = request.user.userprofile.id
                 return JsonResponse(response_data)
         else:
             # TODO edit isi dari post-nya
+            post.title = nama
+            post.description = description
+            post.is_captured = False
+            post.save()
             response_data['msg'] = "success"
+            response_data['title'] = nama
+            response_data['id'] = id
+            response_data['description'] = description
+            response_data['is_captured'] = False
+            response_data['date_created'] = post.date_created
+            response_data['upvote_count'] = post.upvote_count
+            response_data['msg'] = "success"
+            response_data['creator_id'] = request.user.userprofile.id
             return JsonResponse(response_data)
     response_data['msg'] = "fail"
     return JsonResponse(response_data)
