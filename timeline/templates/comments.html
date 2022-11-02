@@ -19,7 +19,7 @@
         <div class="card col-lg-4 col-md-6 col-sm-12" style="width: 85rem;">
             <div class="card-body">
                 <h4 class="card-text">{{content.title}}</h4>
-                <p class="card-text">Written by: Anonymous #{{content.creator.id}}</p>
+                <p class="card-text">Written by: {{ content.creator.alias }} #{{content.creator.id}}</p>
                 <p class="card-text">{{content.description}}</p>
                 <form method="POST">
                     {% csrf_token %}
@@ -35,7 +35,7 @@
                     {% for comment in list_comment %}
                     <div id="comment-card" class="card col-lg-4 col-md-6 col-sm-12" style="width: 20rem;">
                         <div class="card-body">
-                            <h4 class="card-text">Anonymous #{{comment.user.id}}</h4>
+                            <h4 class="card-text">{{comment.user.alias}} #{{comment.user.id}}</h4>
                             <p class="card-text">{{comment.date_created}}</p>
                             <p class="card-text">{{comment.comment}}</p>
                         </div>
