@@ -13,7 +13,11 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='/login/')
 def show_hall_of_shame(request):
     data = Corruptor.objects.all()
-    return render(request, 'hall_of_shame.html', {'data':data})
+    if request.user.userprofile.is_admin:
+        return render(request, 'hall_of_shame.html', {'data':data})
+    print("apan")
+    return render(request, 'hall_of_shame_user.html', {'data':data})
+
 
 def get_hall_of_shame(request):
     data = Corruptor.objects.all()
