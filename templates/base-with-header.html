@@ -41,7 +41,6 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'css/header.css' %}">
     <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
-    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
     <header class="p-3 mb-3 border-bottom sticky-top" id="header">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -61,7 +60,7 @@
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <img src="https://www.nicepng.com/png/detail/202-2024580_png-file-profile-icon-vector-png.png"
+                        <img src="{{ request.user.userprofile.image.url }}"
                             alt="mdo" width="35" height="35" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small">
