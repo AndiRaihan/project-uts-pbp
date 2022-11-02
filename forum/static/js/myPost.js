@@ -9,6 +9,16 @@ function upvote(id) {
     });
 }
 
+function deletePost(id) {
+    $.ajax({
+        url: `./${id}/delete`,
+        datatype: 'json',
+        success: function (data) {
+            $(`#card${id}`).remove();
+        }
+    });
+}
+
 function editPost() {
     var name = $('#id_title').val();
     var description = $(`#id_description`).val();
@@ -59,7 +69,7 @@ function editPost() {
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>
-                                            <li><a class="dropdown-item" href="${url}${post.id}/delete">Delete</a></li>
+                                            <li><a onclick="deletePost(${post.id});" class="dropdown-item" href="#>Delete</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -100,7 +110,7 @@ function editPost() {
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>
-                                            <li><a class="dropdown-item" href="${url}${post.id}/delete">Delete</a></li>
+                                            <li><a onclick="deletePost(${post.id});" class="dropdown-item" href="#>Delete</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -155,7 +165,7 @@ function resetPost() {
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="${url}${data[i].pk}/delete">Delete</a></li>
+                                        <li><a onclick="deletePost(${data[i].pk});" class="dropdown-item" href="#>Delete</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -195,7 +205,7 @@ function resetPost() {
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="${url}${data[i].pk}/delete">Delete</a></li>
+                                        <li><a onclick="deletePost(${data[i].pk});" class="dropdown-item" href="#">Delete</a></li>
                                     </ul>
                                 </div>
                             </div>

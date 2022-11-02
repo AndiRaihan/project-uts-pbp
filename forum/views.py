@@ -143,3 +143,8 @@ def edit_post(request, content_id):
             return JsonResponse(response_data)
     response_data['msg'] = "fail"
     return JsonResponse(response_data)
+
+def delete_post(request, content_id):
+    content = Content.objects.get(id=content_id)
+    content.delete()
+    return JsonResponse({'msg': 'Success'})
