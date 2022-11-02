@@ -5,6 +5,7 @@ from authen.models import UserProfile
 from profile_page.forms import ProfileForm
 from django.http import HttpResponse, HttpResponseNotFound
 from django.core import serializers
+import os
 
 # Create your views here.
 
@@ -17,8 +18,6 @@ def show_my_profile(request):
 
 def get_my_profile_json(request):
     user = UserProfile.objects.filter(user=request.user)
-    dic = serializers.serialize('json', user)
-    
     return HttpResponse(serializers.serialize('json', user), content_type="application/json")
 
 def edit_my_profile(request):
@@ -30,7 +29,10 @@ def edit_my_profile(request):
 
         try:
             newProfpic = request.FILES['newProfpic']
-            if newProfpic: user.image = newProfpic
+            if newProfpic: 
+                beforeUrl = "static/" + user.image.url
+                user.image = newProfpic
+                os.remove(beforeUrl)
         except:
             pass
 
