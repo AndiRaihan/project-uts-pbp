@@ -43,13 +43,8 @@ async function getHallOfShame() {
   
       var cardDesc = document.createElement("p");
       cardDesc.classList.add("card-text");
-      if ((fields.description).length >= 65) {
-        let desc = (fields.description).slice(0, 65)
-        desc += `... <a href="detail/${item.pk}">read more</a>`
-        cardDesc.innerHTML = desc
-      } else {
-        cardDesc.innerHTML = fields.description
-      }
+      cardDesc.innerHTML = fields.description
+
       divCardBody.appendChild(cardDesc);
   
       var divBtn = document.createElement("div");
