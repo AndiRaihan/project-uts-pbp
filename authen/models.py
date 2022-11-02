@@ -5,9 +5,10 @@ from django.contrib.auth.models import User
 # Create your models here.
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField()
+    image = models.ImageField(default="default.png", null=True, blank=True)
     alias = models.CharField(max_length=255, default="Anonymous") # Beda sama username, bisa diganti gitu
     # TODO Mau ada field apa lagi?
+    is_admin = models.BooleanField(default=False)
  
 class Content(models.Model):
     creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
@@ -17,6 +18,7 @@ class Content(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_captured = models.DateTimeField(blank=True, null=True)
     photo = models.ImageField()
+    upvote_count = models.PositiveIntegerField(default=0)
     
     def get_creator_name(self):
         return self.creator.alias
