@@ -23,6 +23,10 @@ h1, h3 {
     color: white;
     text-align: center;
 }
+label {
+    color: white;
+}
+
 .card{
     padding: 15px;
     background-color: white;
