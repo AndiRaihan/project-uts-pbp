@@ -23,7 +23,7 @@
         {% for post in list_forum %}
         {% if post.is_captured %}
             <div class="card" style="width: 20rem; border-color: #DA0037;">
-                <div class="card-header">
+                <div class="card-header" style="background-color:white;">
                     <h2 class="card-title">{{post.title}}</h2>
                     <p class="card-text">Written by: Anonymous #{{post.creator.id}}</p>
                     <p class="card-text">{{post.date_created}}
