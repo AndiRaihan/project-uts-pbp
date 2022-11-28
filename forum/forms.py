@@ -33,7 +33,7 @@ class ForumForm(forms.ModelForm):
 
         title = data['title']
         
-        regex = "^[A-Za-z0-9-]*$"
+        regex = "^[A-Za-z0-9._~-]*$"
         if not (bool(re.match(regex, title))):
             raise forms.ValidationError("Nama tidak valid")
         
