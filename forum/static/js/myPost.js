@@ -69,7 +69,7 @@ function editPost() {
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>
-                                            <li><a onclick="deletePost(${post.id});" class="dropdown-item" href="#>Delete</a></li>
+                                            <li><a onclick="deletePost(${post.id});" class="dropdown-item" href="#">Delete</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -110,7 +110,7 @@ function editPost() {
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>
-                                            <li><a onclick="deletePost(${post.id});" class="dropdown-item" href="#>Delete</a></li>
+                                            <li><a onclick="deletePost(${post.id});" class="dropdown-item" href="#">Delete</a></li>
                                         </ul>
                                     </div>
                                 </div>
