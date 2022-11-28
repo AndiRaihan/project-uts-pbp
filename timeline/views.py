@@ -29,7 +29,8 @@ def show_timeline(request,group_name):
 def show_group(request):
     data = Forum.objects.all()
     context={
-        'list_group':data
+        'list_group':data,
+        'user_name': str(request.user)
     }
     return render(request,'home.html',context)
 
