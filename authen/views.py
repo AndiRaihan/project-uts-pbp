@@ -11,6 +11,7 @@ from authen.models import UserProfile
 import json
 
 
+
 # Create your views here.
 def register(request):
     form = UserCreationForm()
