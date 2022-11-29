@@ -15,6 +15,7 @@ from django.core import serializers
 import json
 # Create your views here.
 
+@csrf_exempt
 @login_required(login_url='/login/')
 def create_post(request):
     form = TaskForms(request.POST)

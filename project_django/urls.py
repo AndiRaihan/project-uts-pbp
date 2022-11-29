@@ -26,6 +26,7 @@ urlpatterns = [
     path('', include('forum.urls')),
     path('', include('profile_page.urls')),
     path('hall/', include('hall_of_shame.urls')),
+    path('auth/', include('authentication.urls')),
 
 ]
 
