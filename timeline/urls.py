@@ -12,4 +12,5 @@ urlpatterns = [
     path('', show_group, name='landing'),
     path('group/<str:group_name>/<int:content_id>/delete/', delete, name='delete'),
     path('group/<str:group_name>/<int:content_id>/upvote/', upvote, name='upvote'),
+    path('show-group-json', show_group_json, name="show-group-json"),
 ]
