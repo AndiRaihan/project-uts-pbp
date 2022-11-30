@@ -34,6 +34,10 @@ def show_group(request):
     }
     return render(request,'home.html',context)
 
+def show_group_json(request):
+    data = Forum.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
 # butuh @
 @login_required(login_url='/login/')
 def comment(request,content_id, group_name=""):
