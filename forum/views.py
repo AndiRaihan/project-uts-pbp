@@ -13,6 +13,7 @@ from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.urls import reverse
 from django.core import serializers
 import json
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 @login_required(login_url='/login/')
@@ -20,10 +21,12 @@ def create_post(request):
     form = TaskForms(request.POST)
     response_data = {}
     if request.method == 'POST':
+        print(request.POST.get("group"))
         if form.is_valid():
             title = form.cleaned_data['title']
             description = form.cleaned_data['description']
             forum_id = form.cleaned_data['group']
+            print(forum_id)
             seller = request.user.userprofile
             content_baru = Content.objects.create(creator=seller, title=title, description=description)
             ContentUpvote.objects.create(content=content_baru)
@@ -37,6 +40,34 @@ def create_post(request):
     response_data['form'] = form
     response_data['forums'] = Forum.objects.all()
     return render(request, "create_post.html", response_data)
+
+@csrf_exempt
+@login_required(login_url='/login/')
+def create_post_flutter(request):
+    form = TaskForms(request.POST)
+    response_data = {}
+    if request.method == 'POST':
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        group = request.POST.get("group")
+        list_of_char = ["[", "]", ","]
+        # Create a mapping table to map the characters 
+        # to be deleted with empty string
+        translation_table = str.maketrans('', '', ''.join(list_of_char))
+        group = group.translate(translation_table)
+        group = group.split(" ")
+        forum_id = [int(i) for i in group]
+        seller = request.user.userprofile
+        content_baru = Content.objects.create(creator=seller, title=title, description=description)
+        ContentUpvote.objects.create(content=content_baru)
+        for pk in forum_id:
+            forum = Forum.objects.get(id=pk)
+            forum.contents.add(content_baru)
+        return JsonResponse({"status" : "oke"})
+    response_data['form'] = form
+    response_data['forums'] = Forum.objects.all()
+    print("Masuk 3")
+    return JsonResponse({"status" : "gagal"})
 
 @login_required(login_url='/login/')
 def create_group(request):
@@ -54,6 +85,23 @@ def create_group(request):
     
     response_data['form'] = form
     return render(request, "create_group.html", response_data)
+
+@csrf_exempt
+@login_required(login_url='/login/')
+def create_group_flutter(request):
+    form = ForumForm(request.POST)
+    response_data = {}
+    if request.method == 'POST' and form.is_valid():
+        title = form.cleaned_data['title']
+        description = form.cleaned_data['description']
+        creator = request.user.userprofile
+        new_forum = Forum.objects.create(creator=creator, title=title, description=description)
+        members = Members.objects.create(forum=new_forum)
+        members.subscriptor.add(creator)
+        # TODO Nanti ini ganti ke landing page utama
+        return JsonResponse({"status" : "oke"})
+    
+    return JsonResponse({"status" : "gagal"})
 
 @login_required(login_url='/login/')
 def show_json(request):
