@@ -11,7 +11,7 @@ Pemrograman Berbasis Platform (CSGE602022) - diselenggarakan oleh Fakultas Ilmu 
 4. Tm Revanza Narendra Pradipta - 2206025003
 5. Munifah Nurfadhilah - 2106654851
 
-## [Link Heroku](https://project-uts-pbp-a05.herokuapp.com/)
+## [Link Railway](https://whistle-blower.up.railway.app/)
 
 ## Cerita Aplikasi 
 Sampai saat ini di Indonesia korupsi masih marak dilakukan oleh masyarakat Indonesia. Mulai dari skala kecil sampai skala besar, seperti pemerintahan. Terdapat banyak saksi yang melihat aksi para pelaku korupsi tersebut. Namun, mereka belum mempunyai wadah untuk melaporkan aksi tersebut secara anonim. Kami membuat aplikasi ini dengan tujuan memberikan wadah kepada para saksi yang berani mengungkapkan kejahatan pelaku korupsi. Kami mendapatkan inspirasi aplikasi ini berdasarkan tautan [berikut](https://www.oecd.org/g20/topics/anti-corruption/).
