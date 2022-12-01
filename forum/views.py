@@ -1,4 +1,3 @@
-from urllib import response
 from django.shortcuts import render
 from authen.models import UserProfile, Content, ContentUpvote
 from forum.models import Forum, Members
@@ -49,6 +48,7 @@ def create_post_flutter(request):
     if request.method == 'POST':
         title = request.POST.get("title")
         description = request.POST.get("description")
+        
         group = request.POST.get("group")
         list_of_char = ["[", "]", ","]
         # Create a mapping table to map the characters 
@@ -57,6 +57,7 @@ def create_post_flutter(request):
         group = group.translate(translation_table)
         group = group.split(" ")
         forum_id = [int(i) for i in group]
+        
         seller = request.user.userprofile
         content_baru = Content.objects.create(creator=seller, title=title, description=description)
         ContentUpvote.objects.create(content=content_baru)
