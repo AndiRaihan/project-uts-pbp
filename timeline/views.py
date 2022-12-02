@@ -25,6 +25,11 @@ def show_timeline(request,group_name):
     } 
     return render(request, "timeline.html", context)
 
+def show_timeline_json(request, group_name):
+    forum = Forum.objects.get(title=group_name)
+    data = forum.contents.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
 
 def show_group(request):
     data = Forum.objects.all()
