@@ -112,7 +112,7 @@ def show_json(request):
     response_data['data'] = json.loads(serializers.serialize("json", content))
     return JsonResponse((response_data))
 
-@login_required(login_url='/login/')
+# @login_required(login_url='/login/')
 def show_json_group(request, group_name):
     response_data = {}
     forum = Forum.objects.get(title=group_name)
