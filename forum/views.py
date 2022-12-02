@@ -143,6 +143,7 @@ def show_my_post(request):
     } 
     return render(request, "my-post.html", context)
 
+# TODO Jadiin login required
 @login_required(login_url='/login/')
 def show_my_post_json(request):
     content = Content.objects.filter(creator=request.user.userprofile)

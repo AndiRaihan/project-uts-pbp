@@ -40,7 +40,7 @@ def register(request):
             password = request.POST.get("password")
 
             new_user = User.objects.create_user(username=username, password=password)
-            new_user = new_user.save()
+            new_user.save()
             new_user_profile = UserProfile.objects.create(user=new_user)
             return JsonResponse({"instance": "user Dibuat"}, status=200)
         

@@ -20,5 +20,5 @@ urlpatterns = [
     path('mypost/<int:content_id>/edit/', edit_post, name='mypost-edit'),
     
     path('create-post-flutter/', create_post_flutter, name='create-post-flutter'),
-    path('create-forum-flutter/', create_group_flutter, name='create-group'),
+    path('create-forum-flutter/', create_group_flutter, name='create-group-flutter'),
 ]
