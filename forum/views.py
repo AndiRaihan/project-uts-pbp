@@ -13,6 +13,8 @@ from django.urls import reverse
 from django.core import serializers
 import json
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.timezone import make_aware
+import datetime
 # Create your views here.
 
 @login_required(login_url='/login/')
@@ -149,6 +151,8 @@ def show_my_post_json(request):
     content = Content.objects.filter(creator=request.user.userprofile)
     return HttpResponse(serializers.serialize("json", content), content_type="application/json")
 
+@csrf_exempt
+@login_required(login_url='/login/')
 def edit_post(request, content_id):
     form = TaskForms(request.POST)
     response_data = {}
@@ -163,14 +167,20 @@ def edit_post(request, content_id):
                 post.title = nama
                 post.description = description
                 post.is_captured = True
-                post.date_captured = request.POST.get('date_captured')
+                date = request.POST.get('date_captured')
+                try:
+                    date_fix = datetime.datetime.strptime(date, "%Y-%m-%dT%H:%M:%SZ")
+                except:
+                    date_fix = datetime.datetime.strptime(date, "%Y-%m-%d %H:%M:%S.%f")
+                date_fix = make_aware(date_fix)
+                post.date_captured = date_fix
                 post.save()
                 response_data['msg'] = "success"
                 response_data['title'] = nama
                 response_data['id'] = id
                 response_data['description'] = description
                 response_data['is_captured'] = True
-                response_data['date_captured'] = request.POST.get('date_captured')
+                response_data['date_captured'] = date
                 response_data['date_created'] = post.date_created
                 response_data['upvote_count'] = post.upvote_count
                 response_data['creator_id'] = request.user.userprofile.id
