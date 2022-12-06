@@ -6,7 +6,7 @@ from profile_page.forms import ProfileForm
 from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
-import os
+import os, traceback
 
 # Create your views here.
 
@@ -31,9 +31,9 @@ def edit_my_profile(request):
         try:
             newProfpic = request.FILES['newProfpic']
             if newProfpic: 
-                beforeUrl = "static/" + user.image.url
+                prevUrl = "static/" + user.image.url
                 user.image = newProfpic
-                os.remove(beforeUrl)
+                os.remove(prevUrl)
         except:
             pass
 
@@ -46,17 +46,26 @@ def edit_my_profile(request):
 @csrf_exempt
 def edit_my_profile_flutter(request):
     if request.method == 'POST':
-        user = UserProfile.objects.get(user=request.user)
+        if request.user.id == None:
+            id = int(request.environ['QUERY_STRING'].split("=")[-1])
+        else:
+            id = request.user.id
+
+        user = UserProfile.objects.get(user_id=id)
 
         alias = request.POST.get('alias')
-        if alias != "": user.alias = alias
+        if alias != "": 
+            user.alias = alias
 
         try:
             newProfpic = request.FILES['newProfpic']
             if newProfpic: 
-                beforeUrl = "static/" + user.image.url
-                user.image = newProfpic
-                os.remove(beforeUrl)
+                prevUrl = "static" + user.image.url
+                
+                user.image.save(newProfpic.name, newProfpic)
+
+                if (prevUrl != "static/images/default.png"):
+                    os.remove(prevUrl)
         except:
             pass
 
