@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from timeline.models import Comment
 from timeline.forms import CommentForms
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 import json
 
@@ -117,6 +118,7 @@ def upvote_ajax(request, content_id, group_name=""):
     content.save()
     return JsonResponse({'upvote': content.upvote_count})
 
+@csrf_exempt
 @login_required(login_url='/login/')
 def add_comment(request, content_id, group_name=""):
     content = Content.objects.get(id=content_id) 
