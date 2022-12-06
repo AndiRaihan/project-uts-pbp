@@ -19,6 +19,7 @@ urlpatterns = [
     path('mypost/<int:content_id>/comment/add/', add_comment, name='mypost-comment'),
     path('mypost/<int:content_id>/edit/', edit_post, name='mypost-edit'),
     
+    path('mypost/<int:content_id>/edit/flutter/', edit_post_flutter, name='mypost-edit-flutter'),
     path('create-post-flutter/', create_post_flutter, name='create-post-flutter'),
     path('create-forum-flutter/', create_group_flutter, name='create-group-flutter'),
 ]
