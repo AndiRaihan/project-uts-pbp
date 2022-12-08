@@ -16,5 +16,5 @@ urlpatterns = [
     path('add/', add_corruptor, name='add_corruptor'),
     path('delete/<id>/', delete_corruptor, name='delete_corruptor'),
     path('detail/<id>/', show_detail, name='show_detail'),
-    path('add-flutter', add_corruptor_flutter, name='add_corruptor_flutter')
+    path('add-flutter/', add_corruptor_flutter, name='add_corruptor_flutter')
 ]
