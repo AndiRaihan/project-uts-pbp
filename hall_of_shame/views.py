@@ -67,9 +67,9 @@ def delete_corruptor(request, id):
     if request.method == "DELETE":
         corruptor = Corruptor.objects.filter(pk=id).first()
         corruptor.delete()
-        return HttpResponse(b"DELETED", status=201)
+        return JsonResponse({"status":"oke"})
 
-    return HttpResponseNotFound()
+    return JsonResponse({"status":"gagal"})
 
 def show_detail(request, id):
     data = Corruptor.objects.filter(pk=id)
