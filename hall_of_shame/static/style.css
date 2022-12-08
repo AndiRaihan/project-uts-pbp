@@ -1,4 +1,5 @@
 .card {
+    width: 17rem;
     box-shadow: 0 0  8px rgb(212, 206, 206);
 }
 .card:hover {
@@ -17,16 +18,20 @@ button:active {
 .btn {
     border: none;
     margin-top: auto;
-}
-.checklist-btn {
-    background: none;
-    margin-top: auto;
+    position: absolute;
+    bottom: 10px;
+    left: 90px;
 }
 .delete-btn {
     background-color: rgb(197, 38, 38);
     color: white;
     margin-top: auto;
+    position: absolute;
+    bottom: 10px;
 }
 .close {
     background: none;
+}
+h2{
+    color:white;
 }

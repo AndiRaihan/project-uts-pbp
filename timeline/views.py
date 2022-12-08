@@ -1,3 +1,4 @@
+from urllib import response
 from django.shortcuts import redirect, render
 from authen.models import Content
 from forum.models import Forum
@@ -5,6 +6,9 @@ from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from timeline.models import Comment
 from timeline.forms import CommentForms
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from django.core import serializers
+import json
 
 # Create your views here.
 def show_timeline(request,group_name):
@@ -22,13 +26,23 @@ def show_timeline(request,group_name):
     } 
     return render(request, "timeline.html", context)
 
+def show_timeline_json(request, group_name):
+    forum = Forum.objects.get(title=group_name)
+    data = forum.contents.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
 
 def show_group(request):
     data = Forum.objects.all()
     context={
-        'list_group':data
+        'list_group':data,
+        'user_name': str(request.user)
     }
     return render(request,'home.html',context)
+
+def show_group_json(request):
+    data = Forum.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 # butuh @
 @login_required(login_url='/login/')
@@ -36,12 +50,6 @@ def comment(request,content_id, group_name=""):
     content = Content.objects.get(id=content_id) 
     form = CommentForms(request.POST)
     response_data = {}
-    
-    if request.method == 'POST' and form.is_valid():
-        comment_form = form.cleaned_data['comment']
-        comment_obj = Comment.objects.create(commented_on=content, user=request.user.userprofile, comment=comment_form)
-    
-    
     data_comment = Comment.objects.filter(commented_on=content)
     
     context = {
@@ -50,6 +58,16 @@ def comment(request,content_id, group_name=""):
     }
     
     return render(request, "comments.html", context)
+
+@login_required(login_url='/login/')
+def comment_json(request,content_id, group_name=""):
+    content = Content.objects.get(id=content_id) 
+    form = CommentForms(request.POST)
+    response_data = {}
+    
+    data_comment = Comment.objects.filter(commented_on=content)
+    
+    return HttpResponse(serializers.serialize("json", data_comment), content_type="application/json")
 
 
         
@@ -99,3 +117,19 @@ def upvote_ajax(request, content_id, group_name=""):
     content.upvote_count = upvote_count
     content.save()
     return JsonResponse({'upvote': content.upvote_count})
+
+@csrf_exempt
+@login_required(login_url='/login/')
+def add_comment(request, content_id, group_name=""):
+    content = Content.objects.get(id=content_id) 
+    form = CommentForms(request.POST)
+    response_data = {}
+    if request.method == 'POST' and form.is_valid():
+        comment_form = form.cleaned_data['comment']
+        comment_obj = Comment.objects.create(commented_on=content, user=request.user.userprofile, comment=comment_form)
+        response_data['comment'] = json.loads(serializers.serialize("json", [comment_obj]))
+        response_data['msg'] = 'success'
+        return JsonResponse(response_data)
+    response_data['msg'] = 'failed'
+    return JsonResponse(response_data)
+        

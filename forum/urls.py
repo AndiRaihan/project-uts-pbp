@@ -1,6 +1,6 @@
 from django.urls import path
 from forum.views import *
-from timeline.views import delete, upvote, upvote_ajax, comment
+from timeline.views import delete, upvote, upvote_ajax, comment, add_comment, comment_json
 
 app_name = 'forum'
 
@@ -12,8 +12,14 @@ urlpatterns = [
     path('create-forum/name/', get_group_name, name='group-name'),
     path('mypost/', show_my_post, name='my-post'),
     path('mypost/json/', show_my_post_json, name="my-post-json"),
-    path('mypost/<int:content_id>/delete/', delete, name='delete'),
+    path('mypost/<int:content_id>/delete/', delete_post, name='delete'),
     path('mypost/<int:content_id>/upvote/', upvote_ajax, name='mypost-upvote'),
     path('mypost/<int:content_id>/comment/', comment, name='mypost-comment'),
+    path('mypost/<int:content_id>/comment/json/', comment_json, name='mypost-comment'),
+    path('mypost/<int:content_id>/comment/add/', add_comment, name='mypost-comment'),
     path('mypost/<int:content_id>/edit/', edit_post, name='mypost-edit'),
+    
+    path('mypost/<int:content_id>/edit/flutter/', edit_post_flutter, name='mypost-edit-flutter'),
+    path('create-post-flutter/', create_post_flutter, name='create-post-flutter'),
+    path('create-forum-flutter/', create_group_flutter, name='create-group-flutter'),
 ]

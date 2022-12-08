@@ -1,6 +1,27 @@
-.profile-pic{
+.profile-pic {
     max-width: 200px;
     max-height:200px;
     margin: 0 auto;
     border-radius: 50%;
+}
+
+.modal-footer {
+  background: #2C3333;
+}
+
+.modal-header {
+  background: #DA0037;
+}
+
+.modal-body {
+  background: #2C3333;
+}
+
+form {
+  margin: 2;
+  width: 100%;
+  padding: 1em;
+  border: 2px solid rgb(87, 73, 73);
+  border-radius: 1em;
+  font-size: 15px;
 }
