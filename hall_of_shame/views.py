@@ -71,6 +71,12 @@ def delete_corruptor(request, id):
 
     return JsonResponse({"status":"gagal"})
 
+@csrf_exempt
+def delete_flutter(request, id):
+    corruptor = Corruptor.objects.get(pk=id)
+    corruptor.delete()
+    return JsonResponse({"status":"oke"})
+
 def show_detail(request, id):
     data = Corruptor.objects.filter(pk=id)
     return render(request, 'detail_corruptor.html', {'data':data})
