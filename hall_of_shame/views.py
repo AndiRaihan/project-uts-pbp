@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, JsonResponse, HttpResponseNotFound
 from django.core import serializers
 from hall_of_shame.models import Corruptor
 from django.views.decorators.csrf import csrf_exempt
@@ -36,6 +36,26 @@ def add_corruptor(request):
         return HttpResponse(b"CREATED", status=201)
     
     return HttpResponseNotFound()
+
+@csrf_exempt
+def add_corruptor_flutter(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        arrested_date = request.POST.get('arrested_date')
+        corruption_type = request.POST.get('corruption_type')
+        description = request.POST.get('description')
+
+        new_corruptor = Corruptor(
+            name=name,
+            arrested_date=arrested_date,
+            corruption_type=corruption_type,
+            description=description
+        )
+        new_corruptor.save()
+
+        return JsonResponse({"status":"oke"})
+    
+    return JsonResponse({"status":"gagal"})
 
 @csrf_exempt
 def delete_corruptor(request, id):
